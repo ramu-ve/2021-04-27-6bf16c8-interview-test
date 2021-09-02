@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -40,6 +41,10 @@ namespace Aris.ServerTest.Services
             var data = response.Content.ReadAsStringAsync();
             var games = JsonConvert.DeserializeObject<KoreGames>(data.Result);
 
+            if (games?.Games != null)
+            {
+                games.Games = games.Games.OrderBy(x => x.Category).ThenBy(x => x.Platform).ThenBy(x => x.Name).ToList();
+            }
             return games.Games;
         }
 
