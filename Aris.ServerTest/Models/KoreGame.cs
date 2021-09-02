@@ -8,7 +8,7 @@ namespace Aris.ServerTest.Models
     public class KoreGames
     {
         [JsonProperty("games")]
-        public List<KoreGame> Games { get; set; }
+        public List<KoreGame> Games { get; set; }        
     }
 
     public class KoreGame
@@ -58,6 +58,8 @@ namespace Aris.ServerTest.Models
 
         [JsonProperty("attributes")]
         public KoreAttributes Attributes { get; set; }
+
+        
 
         public string PlayGameLink
         {

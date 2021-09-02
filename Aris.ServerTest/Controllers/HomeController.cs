@@ -24,7 +24,9 @@ namespace Aris.ServerTest.Controllers
             var games = await _gameService.GetGamesAsync(GetAuthToken(), returnUrl);
 
             viewModel.Games = games;
+            viewModel.Categories = games.Select(x => x.Category).Distinct().ToList();
 
+            
             return View(viewModel);
         }
 

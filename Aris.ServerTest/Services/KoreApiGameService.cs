@@ -43,7 +43,7 @@ namespace Aris.ServerTest.Services
 
             if (games?.Games != null)
             {
-                games.Games = games.Games.OrderBy(x => x.Category).ThenBy(x => x.Platform).ThenBy(x => x.Name).ToList();
+                games.Games = games.Games.OrderBy(x => x.Category).ThenBy(x => x.Platform).ThenBy(x => x.Name).ToList();                
             }
             return games.Games;
         }
