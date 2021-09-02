@@ -16,11 +16,11 @@ namespace Aris.ServerTest.Models
         public const string PLAY_LINK = "play";
         public const string SELF_LINK = "_self";
         
-
         public KoreGame()
         {
             Actions = new Dictionary<string, KoreLink>();
             Links = new Dictionary<string, KoreLink>();
+            Attributes = new KoreAttributes();
         }
 
         [JsonProperty("provider")]
@@ -55,6 +55,9 @@ namespace Aris.ServerTest.Models
 
         [JsonProperty("medal")]
         public KoreMedal Medal { get; set; }
+
+        [JsonProperty("attributes")]
+        public KoreAttributes Attributes { get; set; }
 
         public string PlayGameLink
         {
@@ -93,6 +96,22 @@ namespace Aris.ServerTest.Models
             {
                 var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(this.GameDetailsLink);
                 return System.Convert.ToBase64String(plainTextBytes);
+            }
+        }
+
+        public string FreeSpin
+        {
+            get
+            {
+                if (this.Attributes != null &&
+                    !string.IsNullOrEmpty(this.Attributes.FreeSpins))
+                {
+                    return "Enjoy your Free spin";
+                }
+                else
+                {
+                    return "No free spin";
+                }               
             }
         }
     }
